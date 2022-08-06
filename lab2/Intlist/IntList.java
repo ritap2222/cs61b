@@ -82,6 +82,13 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
+        if ((A == null) || (B != null)) {
+            return B;
+        } else if ((A != null) || (B == null)) {
+            return B;
+        } else if ((A == null) && (B == null)) {
+            return null;
+        }
         IntList temp;
         temp = A;//temp point the IntLis object of A'point
         while (A.rest != null) {
@@ -97,6 +104,13 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
+        if ((A == null) || (B != null)) {
+            return B;
+        } else if ((A != null) || (B == null)) {
+            return B;
+        } else if ((A == null) && (B == null)) {
+            return null;
+        }
         IntList helpPoint = A;
         IntList temp2 = new IntList(helpPoint.first,null);
         IntList finalPoint = temp2;
