@@ -76,8 +76,8 @@ public class LinkedListDeque<T> {
     }
 
     public T getRecursive(int index) {
-        if (index == -1) {
-            return this.sentinel.item;
+        if (index == 0) {
+            return this.sentinel.next.item;
         } else {
             this.sentinel = this.sentinel.next;
             return this.getRecursive(index - 1);
