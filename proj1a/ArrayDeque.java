@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
             size = size + 1;
             items[next] = m;
             next = next + 1;
-            if (next > items.length) {
+            if (next >= items.length) {
                 next = next - items.length;
             }
         }
@@ -66,16 +66,16 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        T tempf = items[prev];
-        items[prev] = null;
+        T tempf = items[prev + 1];
+        items[prev + 1] = null;
         prev = prev - 1;
         size = size - 1;
         return tempf;
     }
 
     public T removeLast() {
-        T templ = items[next];
-        items[next] = null;
+        T templ = items[next - 1];
+        items[next - 1] = null;
         next = next + 1;
         size = size - 1;
         return templ;
