@@ -1,48 +1,36 @@
 public class ArrayDeque<T> {
     private T[] items;
     private int size;
-    private int prev;
-    private int next;
+    private int first;
+    private int last;
 
 
     public ArrayDeque() {
         items = (T[]) new Object[8];
         size = 0;
-        prev = 0;
-        next = 0;
+        first = items.length - 1;
+        last = 0;
     }
 
     /**addFirst will change prev*/
     public void addFirst(T m) {
-        if (size == 0) {
-            items[0] = m;
-            next = 1;
-            prev = items.length - 1;
-            size = size + 1;
+        items[first] = m;
+        size = size + 1;
+        if (first == 0) {
+            first = items.length - 1;
         } else {
-            size = size + 1;
-            items[prev] = m;
-            prev = prev - 1;
-            if (prev < 0) {
-                prev = items.length + prev;
-            }
+            first = first - 1;
         }
     }
 
     /**addLast will change next*/
     public void addLast(T m) {
-        if (size == 0) {
-            items[items.length - 1] = m;
-            next = 0;
-            prev = items.length - 2;
-            size = size + 1;
+        items[last] = m;
+        size = size + 1;
+        if (last == items.length - 1) {
+            last = 0;
         } else {
-            size = size + 1;
-            items[next] = m;
-            next = next + 1;
-            if (next >= items.length) {
-                next = next - items.length;
-            }
+            last = last + 1;
         }
     }
 
@@ -66,23 +54,30 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        T tempf = items[prev + 1];
-        items[prev + 1] = null;
-        prev = prev - 1;
         size = size - 1;
-        return tempf;
+        if (first == items.length - 1) {
+            first = 0;
+        } else {
+            first = first + 1;
+        }
+        T rf = items[first];
+        items[first] = null;
+        return rf;
     }
 
     public T removeLast() {
-        T templ = items[next - 1];
-        items[next - 1] = null;
-        next = next + 1;
         size = size - 1;
-        return templ;
+        if (last == 0) {
+            last = items.length - 1;
+        } else {
+            last = last - 1;
+        }
+        T rl = items[last];
+        items[last] = null;
+        return rl;
     }
 
     public T get(int index) {
         return items[index - 1];
     }
-
 }
