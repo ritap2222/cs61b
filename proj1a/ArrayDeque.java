@@ -14,24 +14,46 @@ public class ArrayDeque<T> {
 
     /**addFirst will change prev*/
     public void addFirst(T m) {
-        items[first] = m;
         size = size + 1;
-        if (first == 0) {
+        if (size > items.length) {
+            reSize();
             first = items.length - 1;
-        } else {
+            items[first] = m;
             first = first - 1;
+        } else {
+            items[first] = m;
+            if (first == 0) {
+                first = items.length - 1;
+            } else {
+                first = first - 1;
+            }
         }
+
     }
 
     /**addLast will change next*/
     public void addLast(T m) {
-        items[last] = m;
         size = size + 1;
-        if (last == items.length - 1) {
-            last = 0;
-        } else {
+        if (size > items.length) {
+            reSize();
+            last = size - 1;
+            items[last] = m;
             last = last + 1;
+        } else {
+            items[last] = m;
+            if (last == items.length - 1) {
+                last = 0;
+            } else {
+                last = last + 1;
+            }
         }
+
+    }
+
+    public void reSize() {
+        T[]temp = (T[]) new Object[size * 5];
+        System.arraycopy(items, 0, temp, 0, size - 1);
+        items = temp;
     }
 
     public boolean isEmpty() {
