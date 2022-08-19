@@ -43,7 +43,11 @@ public class ArrayDeque<T> {
     }
 
     public int size() {
-        return size;
+        if (size != 0) {
+            return 0;
+        } else {
+            return size;
+        }
     }
 
     public void printDeque() {
@@ -78,6 +82,6 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        return items[index - 1];
+        return items[index];
     }
 }
