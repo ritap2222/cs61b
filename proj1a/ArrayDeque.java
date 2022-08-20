@@ -139,12 +139,12 @@ public class ArrayDeque<T> {
     public T get(int index) {
         int tempg = first + 1 + index;
         if (tempg >= items.length - 1) {
-            tempg = tempg - (items.length - 1);
+            tempg = tempg - items.length;
         }
         return items[tempg];
     }
 
-    public static void main(String[] args) {
+    /**public static void main(String[] args) {
         ArrayDeque ArrayDeque = new ArrayDeque();
         /**ArrayDeque.addFirst(1);
         ArrayDeque.addFirst(2);
@@ -209,6 +209,6 @@ public class ArrayDeque<T> {
         ArrayDeque.removeFirst();
         ArrayDeque.addFirst(17);
         ArrayDeque.removeFirst();
-        ArrayDeque.get(1);*/
-    }
+        ArrayDeque.get(1);
+    }*/
 }
