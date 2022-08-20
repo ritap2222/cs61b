@@ -15,7 +15,7 @@ public class ArrayDeque<T> {
 
     /**addFirst will change prev*/
     public void addFirst(T m) {
-        size = size + 1;
+        /**size = size + 1;
         if (size > items.length) {
             reSize();
             first = items.length - 1;
@@ -29,13 +29,28 @@ public class ArrayDeque<T> {
             } else {
                 first = first - 1;
             }
-        }
+        }*/
 
+        if (size == 0) {
+            items[0] = m;
+            size = size + 1;
+            first = items.length - 1;
+            last = 1;
+        } else {
+            items[first] = m;
+            size = size + 1;
+            if (first == 0) {
+                first = items.length - 1;
+            } else {
+                first = first - 1;
+            }
+
+        }
     }
 
     /**addLast will change next*/
     public void addLast(T m) {
-        size = size + 1;
+        /**size = size + 1;
         if (size > items.length) {
             reSize();
             last = size - 1;
@@ -45,6 +60,20 @@ public class ArrayDeque<T> {
         } else {
             items[last] = m;
             if (last == items.length - 1) {
+                last = 0;
+            } else {
+                last = last + 1;
+            }
+        }*/
+        if (size == 0) {
+            items[0] = m;
+            size = size + 1;
+            first = items.length - 1;
+            last = 1;
+        } else {
+            items[last] = m;
+            size = size + 1;
+            if(last == items.length - 1) {
                 last = 0;
             } else {
                 last = last + 1;
@@ -108,12 +137,16 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        return items[index];
+        int tempg = first + 1 + index;
+        if (tempg >= items.length - 1) {
+            tempg = tempg - (items.length - 1);
+        }
+        return items[tempg];
     }
 
-    /**public static void main(String[] args) {
+    public static void main(String[] args) {
         ArrayDeque ArrayDeque = new ArrayDeque();
-        ArrayDeque.addFirst(1);
+        /**ArrayDeque.addFirst(1);
         ArrayDeque.addFirst(2);
         ArrayDeque.addFirst(3);
         ArrayDeque.addFirst(4);
@@ -155,9 +188,9 @@ public class ArrayDeque<T> {
         ArrayDeque.addFirst(31);
         ArrayDeque.removeLast();
         ArrayDeque.removeLast();
-        ArrayDeque.removeLast();
+        ArrayDeque.removeLast();*/
 
-        ArrayDeque.addFirst(0);
+        /**ArrayDeque.addFirst(0);
         ArrayDeque.addLast(1);
         ArrayDeque.addFirst(2);
         ArrayDeque.addLast(3);
@@ -176,6 +209,6 @@ public class ArrayDeque<T> {
         ArrayDeque.removeFirst();
         ArrayDeque.addFirst(17);
         ArrayDeque.removeFirst();
-        ArrayDeque.get(1);
-    }*/
+        ArrayDeque.get(1);*/
+    }
 }
