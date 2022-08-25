@@ -149,6 +149,7 @@ public class IntList {
                 tempR.rest = new IntList(helpPoint.first, null);
                 tempR = tempR.rest;
                 countP = countP - 1;
+                helpC = countP;
             }
             A = helpTR;
             return A;
