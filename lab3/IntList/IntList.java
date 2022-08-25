@@ -151,8 +151,7 @@ public class IntList {
                 countP = countP - 1;
                 helpC = countP;
             }
-            A = helpTR;
-            return A;
+            return helpTR;
         }
     }
 
