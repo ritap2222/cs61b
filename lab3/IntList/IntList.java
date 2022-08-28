@@ -130,29 +130,21 @@ public class IntList {
         if (A == null) {
             return null;
         } else {
-            int countP = 0;
-            IntList helpPoint = A;
-            while (helpPoint.rest != null) {
-                helpPoint = helpPoint.rest;
-                countP = countP + 1;
-            }
-            int helpC = countP;
-            IntList tempR = new IntList(helpPoint.first, null);
-            IntList helpTR = tempR;
-
-            while (countP != 0) {
-                helpPoint = A;
-                while (helpC != 1) {
-                    helpPoint = helpPoint.rest;
-                    helpC = helpC - 1;
-                }
-                tempR.rest = new IntList(helpPoint.first, null);
-                tempR = tempR.rest;
-                countP = countP - 1;
-                helpC = countP;
-            }
-            return helpTR;
+            A = reverseHelp(A);
         }
+        return A;
+    }
+
+    public static IntList reverseHelp(IntList A) {
+        IntList finalNode = null;
+        IntList nextNode = A;
+        while (nextNode != null) {
+            IntList remainNode = nextNode.rest;
+            nextNode.rest = finalNode;
+            finalNode = nextNode;
+            nextNode = remainNode;
+        }
+        return finalNode;
     }
 
 
