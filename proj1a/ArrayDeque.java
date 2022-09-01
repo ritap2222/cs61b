@@ -3,10 +3,7 @@ public class ArrayDeque<T> {
     private int size;
     private int first;
     private int last;
-    private int remainFirst;
-    private int remainlast;
-    private int reSizeCount = 0;
-    private int remainSize;
+
 
 
 
@@ -22,7 +19,8 @@ public class ArrayDeque<T> {
     public void addFirst(T m) {
         size = size + 1;
         if (size > items.length) {
-            remainSize = size - 1;
+            last = last - 1;
+            first = first + 1;
             reSize();
             items[first] = m;
             first = first - 1;
@@ -40,7 +38,8 @@ public class ArrayDeque<T> {
     public void addLast(T m) {
         size = size + 1;
         if (size > items.length) {
-            remainSize = size - 1;
+            last = last - 1;
+            first = first + 1;
             reSize();
             items[last] = m;
             last = last + 1;
@@ -55,15 +54,20 @@ public class ArrayDeque<T> {
 
     /**make bigger size*/
     public void reSize() {
-        reSizeCount = reSizeCount + 1;
         T[] temp = (T[]) new Object[size * 2];
-        System.arraycopy(items, 0, temp, 0, size - 1);
+        //System.arraycopy(items, 0, temp, 0, size - 1);
+        copyHelp(temp);
         items = temp;
-        remainFirst = first + 1;
-        remainlast = last - 1;
         first = items.length - 1;
         last = size - 1;
     }
+
+    public void copyHelp(T[] temp) {
+        System.arraycopy(items, first, temp, 0, size - 1 - first);
+        int lastC = size - 1 - (size - 1 - first);
+        System.arraycopy(items, last + 1 - lastC, temp, size - 1 - first, lastC);
+    }
+
 
     public boolean isEmpty() {
         if (size == 0) {
@@ -94,10 +98,8 @@ public class ArrayDeque<T> {
         } else {
             size = size - 1;
             first = first + 1;
-            if (first == items.length && reSizeCount == 0) {
+            if (first > items.length - 1) {
                 first = 0;
-            } else if (first == items.length && reSizeCount > 0) {
-                first = remainFirst;
             }
             T temp = items[first];
             items[first] = null;
@@ -113,11 +115,8 @@ public class ArrayDeque<T> {
         } else {
             size = size - 1;
             last = last - 1;
-            if (last < 0 && reSizeCount == 0) {
+            if (last < 0) {
                 last = items.length - 1;
-            } else if (reSizeCount > 0) {
-                last = remainlast;
-                remainlast = remainSize - 1;
             }
             T temp = items[last];
             items[last] = null;
@@ -127,27 +126,29 @@ public class ArrayDeque<T> {
 
     }
 
-   /**public T get(int index) {
+   public T get(int index) {
+        return null;
+    }
 
-    }*/
 
+   /**public static void main(String[] args) {
+       ArrayDeque ArrayDeque = new ArrayDeque();
+       ArrayDeque.addLast(1);
+       ArrayDeque.addFirst(2);
+       ArrayDeque.addLast(3);
+       ArrayDeque.addLast(4);
+       ArrayDeque.addFirst(5);
+       ArrayDeque.addFirst(6);
+       ArrayDeque.addLast(7);
+       ArrayDeque.addFirst(8);
+       ArrayDeque.removeLast();
+       ArrayDeque.removeLast();
+       ArrayDeque.removeLast();
+       ArrayDeque.removeLast();
 
-   public static void main(String[] args) {
-       /**ArrayDeque ArrayDeque = new ArrayDeque();
-       ArrayDeque.addFirst(1);
-       ArrayDeque.addLast(2);
-       ArrayDeque.addFirst(3);
-       ArrayDeque.addFirst(4);
-       ArrayDeque.addLast(5);
-       ArrayDeque.addLast(6);
-       ArrayDeque.removeLast();
-       ArrayDeque.removeLast();
-       ArrayDeque.removeLast();
-       ArrayDeque.removeLast();
-       ArrayDeque.addFirst(7);
        ArrayDeque.removeLast();//1
        ArrayDeque.addFirst(7);
-       ArrayDeque.addFirst(8);
+
        ArrayDeque.addFirst(9);
        ArrayDeque.removeLast();//2
        ArrayDeque.addFirst(10);
@@ -181,7 +182,7 @@ public class ArrayDeque<T> {
        ArrayDeque.addFirst(31);
        ArrayDeque.removeLast();//10
        ArrayDeque.removeLast();//11
-       ArrayDeque.removeLast();*/
-   }
+       ArrayDeque.removeLast();
+   }*/
 
 }
