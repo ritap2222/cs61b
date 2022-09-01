@@ -9,7 +9,7 @@ public class ArrayDeque<T> {
 
 
     public ArrayDeque() {
-        items = (T[]) new Object[8];
+        items = (T[]) new Object[4];
         size = 0;
         first = items.length - 1;
         last = 0;
@@ -19,8 +19,7 @@ public class ArrayDeque<T> {
     public void addFirst(T m) {
         size = size + 1;
         if (size > items.length) {
-            last = last - 1;
-            first = first + 1;
+            reSizeP();
             reSize();
             items[first] = m;
             first = first - 1;
@@ -38,8 +37,7 @@ public class ArrayDeque<T> {
     public void addLast(T m) {
         size = size + 1;
         if (size > items.length) {
-            last = last - 1;
-            first = first + 1;
+            reSizeP();
             reSize();
             items[last] = m;
             last = last + 1;
@@ -60,6 +58,16 @@ public class ArrayDeque<T> {
         items = temp;
         first = items.length - 1;
         last = size - 1;
+    }
+
+    public void reSizeP() {
+        if (first == items.length - 1 && last == 0) {
+            first = 0;
+            last =  items.length - 1;
+        } else if (first < items.length - 1 || last >= 0) {
+            last = last - 1;
+            first = first + 1;
+        }
     }
 
     public void copyHelp(T[] temp) {
@@ -133,14 +141,20 @@ public class ArrayDeque<T> {
 
    /**public static void main(String[] args) {
        ArrayDeque ArrayDeque = new ArrayDeque();
-       ArrayDeque.addLast(1);
+       ArrayDeque.addFirst(1);
        ArrayDeque.addFirst(2);
-       ArrayDeque.addLast(3);
-       ArrayDeque.addLast(4);
+       ArrayDeque.addFirst(3);
+       ArrayDeque.addFirst(4);
        ArrayDeque.addFirst(5);
        ArrayDeque.addFirst(6);
-       ArrayDeque.addLast(7);
+       ArrayDeque.addFirst(7);
        ArrayDeque.addFirst(8);
+       ArrayDeque.addFirst(9);
+       ArrayDeque.addFirst(10);
+       ArrayDeque.addFirst(11);
+       ArrayDeque.addFirst(12);
+       ArrayDeque.addFirst(13);
+       ArrayDeque.addFirst(14);
        ArrayDeque.removeLast();
        ArrayDeque.removeLast();
        ArrayDeque.removeLast();
