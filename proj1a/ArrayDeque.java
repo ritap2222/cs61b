@@ -135,16 +135,29 @@ public class ArrayDeque<T> {
     }
 
    public T get(int index) {
-        return null;
+        reSizeP();
+        int tempf = first;
+        while (index != -1) {
+            index = index - 1;
+            if (index == -1) {
+                break;
+            }
+            tempf = tempf + 1;
+            if (tempf > items.length - 1) {
+                tempf = 0;
+            }
+        }
+        return items[tempf];
     }
 
 
    /**public static void main(String[] args) {
        ArrayDeque ArrayDeque = new ArrayDeque();
-       ArrayDeque.addFirst(1);
+       ArrayDeque.addLast(1);
        ArrayDeque.addFirst(2);
        ArrayDeque.addFirst(3);
-       ArrayDeque.addFirst(4);
+       ArrayDeque.addLast(4);
+       ArrayDeque.get(2);
        ArrayDeque.addFirst(5);
        ArrayDeque.addFirst(6);
        ArrayDeque.addFirst(7);
