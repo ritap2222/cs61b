@@ -135,81 +135,16 @@ public class ArrayDeque<T> {
     }
 
    public T get(int index) {
-        reSizeP();
-        int tempf = first;
-        while (index != -1) {
-            index = index - 1;
-            if (index == -1) {
-                break;
-            }
-            tempf = tempf + 1;
-            if (tempf > items.length - 1) {
-                tempf = 0;
-            }
-        }
-        return items[tempf];
+        return items[index];
     }
 
 
    /**public static void main(String[] args) {
        ArrayDeque ArrayDeque = new ArrayDeque();
-       ArrayDeque.addLast(1);
-       ArrayDeque.addFirst(2);
-       ArrayDeque.addFirst(3);
-       ArrayDeque.addLast(4);
-       ArrayDeque.get(2);
-       ArrayDeque.addFirst(5);
-       ArrayDeque.addFirst(6);
-       ArrayDeque.addFirst(7);
-       ArrayDeque.addFirst(8);
-       ArrayDeque.addFirst(9);
-       ArrayDeque.addFirst(10);
-       ArrayDeque.addFirst(11);
-       ArrayDeque.addFirst(12);
-       ArrayDeque.addFirst(13);
-       ArrayDeque.addFirst(14);
-       ArrayDeque.removeLast();
-       ArrayDeque.removeLast();
-       ArrayDeque.removeLast();
-       ArrayDeque.removeLast();
-
-       ArrayDeque.removeLast();//1
-       ArrayDeque.addFirst(7);
-
-       ArrayDeque.addFirst(9);
-       ArrayDeque.removeLast();//2
-       ArrayDeque.addFirst(10);
-       ArrayDeque.addFirst(11);
-       ArrayDeque.addFirst(12);
-       ArrayDeque.addFirst(13);
-       ArrayDeque.addFirst(14);
-       ArrayDeque.removeLast();//3
-       ArrayDeque.addFirst(15);
-       ArrayDeque.addFirst(16);
-       ArrayDeque.addFirst(17);
-       ArrayDeque.removeLast();//4
-       ArrayDeque.removeLast();//5
-       ArrayDeque.removeLast();//6
-       ArrayDeque.addFirst(18);
-       ArrayDeque.addFirst(19);
-       ArrayDeque.addFirst(20);
-       ArrayDeque.addFirst(21);
-       ArrayDeque.addFirst(22);
-       ArrayDeque.removeLast();//7
-       ArrayDeque.addFirst(23);
-       ArrayDeque.removeLast();//8
-       ArrayDeque.addFirst(24);
-       ArrayDeque.addFirst(25);
-       ArrayDeque.addFirst(26);
-       ArrayDeque.addFirst(27);
-       ArrayDeque.addFirst(28);
-       ArrayDeque.removeLast();//9
-       ArrayDeque.addFirst(29);
-       ArrayDeque.addFirst(30);
-       ArrayDeque.addFirst(31);
-       ArrayDeque.removeLast();//10
-       ArrayDeque.removeLast();//11
-       ArrayDeque.removeLast();
+       ArrayDeque.addFirst(0);
+       ArrayDeque.removeFirst();
+       ArrayDeque.addLast(2);
+       ArrayDeque.get(0);
    }*/
 
 }
