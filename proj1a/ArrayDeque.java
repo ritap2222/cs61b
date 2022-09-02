@@ -4,10 +4,6 @@ public class ArrayDeque<T> {
     private int first;
     private int last;
 
-
-
-
-
     public ArrayDeque() {
         items = (T[]) new Object[4];
         size = 0;
@@ -51,17 +47,17 @@ public class ArrayDeque<T> {
     }
 
     /**make bigger size*/
-    public void reSize() {
+    private void reSize() {
         T[] temp = (T[]) new Object[size * 2];
-        //System.arraycopy(items, 0, temp, 0, size - 1);
         copyHelp(temp);
         items = temp;
-        first = items.length - 1;
+        first = items.length - 1;//set new array's first and last
         last = size - 1;
     }
 
-    public void reSizeP() {
-        if (first == items.length - 1 && last == 0) {
+    private void reSizeP() {//set the position before reSize array
+        if (first == items.length - 1 && last == 0) {//all addFirst/addLast
+            //first == items.length - 1 and last == 0 after add the final item
             first = 0;
             last =  items.length - 1;
         } else if (first < items.length - 1 || last >= 0) {
@@ -70,7 +66,7 @@ public class ArrayDeque<T> {
         }
     }
 
-    public void copyHelp(T[] temp) {
+    private void copyHelp(T[] temp) {//use first after reSizeP
         System.arraycopy(items, first, temp, 0, size - 1 - first);
         int lastC = size - 1 - (size - 1 - first);
         System.arraycopy(items, last + 1 - lastC, temp, size - 1 - first, lastC);
@@ -136,15 +132,10 @@ public class ArrayDeque<T> {
 
     public T get(int index) {
         int getP;
-        getP = first + 1;
-        if (getP > items.length - 1) {
+        getP = first + 1;//set the first item
+        if (getP > items.length - 1) {//because items[getP] == null
             getP = 0;
         }
-        /*if (index == items.length - 1 && items[index] == null) {
-            return items[0];
-        } else if (index == 0 && items[index] == null) {
-            return items[items.length - 1];
-        }**/
         while (index != -1) {
             index = index - 1;
             if (index == -1) {
@@ -157,16 +148,4 @@ public class ArrayDeque<T> {
         }
         return items[getP];
     }
-
-
-   /**public static void main(String[] args) {
-       ArrayDeque ArrayDeque = new ArrayDeque();
-       ArrayDeque.addFirst(0);
-       ArrayDeque.removeFirst();
-       ArrayDeque.addFirst(2);
-       ArrayDeque.addFirst(3);
-       ArrayDeque.addFirst(4);
-       ArrayDeque.get(0);
-   }*/
-
 }

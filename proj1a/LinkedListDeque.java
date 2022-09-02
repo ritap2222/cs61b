@@ -9,7 +9,7 @@ public class LinkedListDeque<T> {
         sentinel.prev = sentinel;
     }
 
-    public class TNode {
+    private class TNode {
         TNode prev;
         T item;
         TNode next;
