@@ -134,20 +134,38 @@ public class ArrayDeque<T> {
 
     }
 
-   public T get(int index) {
-       if (index == items.length - 1 && items[index] == null) {
-           return items[0];
-       } else if (index == 0 && items[index] == null) {
-           return items[items.length - 1];
-       }
-       return items[index];
-   }
+    public T get(int index) {
+        int getP;
+        getP = first + 1;
+        if (getP > items.length - 1) {
+            getP = 0;
+        }
+        if (index == items.length - 1 && items[index] == null) {
+            return items[0];
+        } else if (index == 0 && items[index] == null) {
+            return items[items.length - 1];
+        }
+        while (index != -1) {
+            index = index - 1;
+            if (index == -1) {
+                break;
+            }
+            getP = getP + 1;
+            if (getP > items.length - 1) {
+                getP = 0;
+            }
+        }
+        return items[getP];
+    }
 
 
    /**public static void main(String[] args) {
        ArrayDeque ArrayDeque = new ArrayDeque();
        ArrayDeque.addFirst(0);
-       ArrayDeque.get(0);
+       ArrayDeque.removeLast();
+       ArrayDeque.addLast(2);
+       ArrayDeque.addLast(3);
+       ArrayDeque.get(1);
    }*/
 
 }
