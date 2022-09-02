@@ -140,11 +140,11 @@ public class ArrayDeque<T> {
         if (getP > items.length - 1) {
             getP = 0;
         }
-        if (index == items.length - 1 && items[index] == null) {
+        /*if (index == items.length - 1 && items[index] == null) {
             return items[0];
         } else if (index == 0 && items[index] == null) {
             return items[items.length - 1];
-        }
+        }**/
         while (index != -1) {
             index = index - 1;
             if (index == -1) {
@@ -162,10 +162,11 @@ public class ArrayDeque<T> {
    /**public static void main(String[] args) {
        ArrayDeque ArrayDeque = new ArrayDeque();
        ArrayDeque.addFirst(0);
-       ArrayDeque.removeLast();
-       ArrayDeque.addLast(2);
-       ArrayDeque.addLast(3);
-       ArrayDeque.get(1);
+       ArrayDeque.removeFirst();
+       ArrayDeque.addFirst(2);
+       ArrayDeque.addFirst(3);
+       ArrayDeque.addFirst(4);
+       ArrayDeque.get(0);
    }*/
 
 }
