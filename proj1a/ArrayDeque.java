@@ -135,15 +135,18 @@ public class ArrayDeque<T> {
     }
 
    public T get(int index) {
-        return items[index];
-    }
+       if (index == items.length - 1 && items[index] == null) {
+           return items[0];
+       } else if (index == 0 && items[index] == null) {
+           return items[items.length - 1];
+       }
+       return items[index];
+   }
 
 
    /**public static void main(String[] args) {
        ArrayDeque ArrayDeque = new ArrayDeque();
        ArrayDeque.addFirst(0);
-       ArrayDeque.removeFirst();
-       ArrayDeque.addLast(2);
        ArrayDeque.get(0);
    }*/
 
